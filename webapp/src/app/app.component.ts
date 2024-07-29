@@ -10,10 +10,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 })
 export class AppComponent {
   
-  showCustomField: boolean = false;
+  showResultField: boolean = false;
 
-  toggleURL() {
-    this.showCustomField = !this.showCustomField;
+  shortenURL() {
+    this.showResultField = true;
   }
 
 }

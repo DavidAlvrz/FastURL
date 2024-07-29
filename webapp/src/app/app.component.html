@@ -7,16 +7,16 @@
             <input type="text">
         </div>
 
-        @if(showCustomField){
+        @if(showResultField){
         <div class="form-wrapper">
-            <label> URL to shorten:</label>
+            <label> Shortened URL:</label>
             <input type="text">
         </div>
         }
 
         <div class="buttons">
-            <button (click)="toggleURL()">Custom</button>
-            <button class="accept">Shorten</button>
+            <button>Custom</button>
+            <button class="accept" (click)="shortenURL()">Shorten</button>
         </div>
     </section>
 </div>
