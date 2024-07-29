@@ -3,24 +3,36 @@
 <div class="gradient">
     <section>
         <div class="form-wrapper">
-            <label> URL to shorten:</label>
-            <input type="text" [(ngModel)]="originalURLField.value" [ngClass]="{'error': originalURLField.error}" placeholder="{{samplePlaceholder}}">
-            <p class="error" *ngIf="originalURLField.error"> {{ originalURLField.error }} </p>
+            <div>
+                <label> URL to shorten:</label>
+                <p class="error" *ngIf="originalURLField.error"> {{ originalURLField.error }} </p>
+            </div>
+
+            <input type="text" [(ngModel)]="originalURLField.value" [ngClass]="{'error': originalURLField.error}"
+                placeholder="{{samplePlaceholder}}">
         </div>
 
         <div class="form-wrapper hidden-input"
             [ngClass]="{'fade-in': customURLField.show,'fade-out': !customURLField.show}">
-            <label> Customize your URL:</label>
-            <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)" 
-            [ngClass]="{'error': customURLField.error}" placeholder="{{samplePlaceholder}}">
-            <p class="error" *ngIf="customURLField.error"> {{ customURLField.error }} </p>
+
+            <div>
+                <label> Customize your URL:</label>
+                <p class="error" *ngIf="customURLField.error"> {{ customURLField.error }} </p>
+            </div>
+
+            <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)"
+                [ngClass]="{'error': customURLField.error}" placeholder="{{samplePlaceholder}}">
         </div>
 
         <div class="form-wrapper hidden-input"
             [ngClass]="{'fade-in': shortenedlURLField.show,'fade-out': !shortenedlURLField.show} ">
-            <label> Your URL is ready!</label>
-            <input disabled class="shortened-url" type="text" [(ngModel)]="shortenedlURLField.value" (input)="handleCustomInputChange($event)">
-            <p *ngIf="shortenedlURLField.msg"> {{ shortenedlURLField.msg }} </p>
+
+            <div>
+                <label> Your URL is ready!</label>
+                <p *ngIf="shortenedlURLField.msg"> {{ shortenedlURLField.msg }} </p>
+            </div>
+            <input disabled class="shortened-url" type="text" [(ngModel)]="shortenedlURLField.value"
+                [ngClass]="{'success': shortenedlURLField.msg}">
         </div>
 
         <div class="buttons">
@@ -54,12 +66,14 @@
 
     <p>
         Just paste your link in the input field and click on the "Shorten" button.
-        Make sure you copy the whole link, including the "http://" or "https://" part. Otherwise, the link might not work.
+        Make sure you copy the whole link, including the "http://" or "https://" part. Otherwise, the link might not
+        work.
         You can also customize your shortened link by clicking on the "Custom" button and entering your desired URL.
     </p>
 
     <p>
-        Once you have your shortened link, you can copy it to your clipboard by clicking on the "Copy to clipboard" button.
+        Once you have your shortened link, you can copy it to your clipboard by clicking on the "Copy to clipboard"
+        button.
         If you want to shorten another link, just click on the "Shorten another URL" button.
     </p>
 
@@ -68,7 +82,8 @@
     <h4> So why is it free? </h4>
 
     <p>
-        This is a simple app developed by a single person as a practice project. You can even check the source code yourself
+        This is a simple app developed by a single person as a practice project. You can even check the source code
+        yourself
         on my github page on the link below!
     </p>
 
@@ -81,4 +96,3 @@
 
 
 </article>
-
