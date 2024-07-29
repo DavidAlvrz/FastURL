@@ -7,10 +7,10 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  constructor(private urlsService: UrlsService) { }
 
   facog = faCog;
-
-  constructor(private urlsService: UrlsService) { }
+  samplePlaceholder = 'https://www.fasturl.com/dontVisitMe';
 
   baseUrl = 'www.fasturl.com/go/';
 
@@ -37,6 +37,7 @@ export class AppComponent {
   toggleCustomField() {
     if(this.loading || this.shortenedlURLField.show) return;
     this.customURLField.show = !this.customURLField.show;
+    this.customURLField.error = '';
   }
 
   handleCustomInputChange(event: any) {
@@ -59,6 +60,9 @@ export class AppComponent {
     if (!formOk){
       this.loading = false;
       return;
+    }else{
+      this.originalURLField.error = '';
+      this.customURLField.error = '';
     }
 
     // Get ID
@@ -101,12 +105,13 @@ export class AppComponent {
   validateForm() {
 
     if (this.originalURLField.value === '') {
-      alert('Please enter a URL to shorten');
+      this.originalURLField.error = 'Enter an URL to shorten';
       return false;
     }
 
     if (this.customURLField.show && this.customURLField.value === this.baseUrl) {
-      alert('Please enter a custom URL');
+      this.originalURLField.error = '';
+      this.customURLField.error = 'Enter your custom URL';
       return false;
     }
 

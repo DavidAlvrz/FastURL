@@ -57,7 +57,7 @@ section {
     margin: 0 auto;
     padding: 1em;
     border-radius: 10px;
-    gap: .75em;
+    gap: 1.5em;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.26), 0 0 15px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -66,8 +66,8 @@ section {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: .5em;
     height: 70px;
+    max-height: 90px;
 }
 
 .form-wrapper label {
@@ -83,6 +83,10 @@ section {
     background-color: #f9f9f9;
 }
 
+.form-wrapper input.error{
+    border: 1px solid red;
+}
+
 .form-wrapper p {
     text-align: left;
     width: 95%;
@@ -91,12 +95,16 @@ section {
     color: var(--primary-color);
 }
 
+.form-wrapper p.error {
+    color: red;
+}
+
 .buttons {
     display: flex;
     justify-content: flex-end;
     width: 100%;
     gap: 1em;
-    margin-top: 2em;
+    margin-top: .5em;
 }
 
 .buttons button {

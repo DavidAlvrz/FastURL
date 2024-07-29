@@ -4,13 +4,16 @@
     <section>
         <div class="form-wrapper">
             <label> URL to shorten:</label>
-            <input type="text" [(ngModel)]="originalURLField.value" name="asd">
+            <input type="text" [(ngModel)]="originalURLField.value" [ngClass]="{'error': originalURLField.error}" placeholder="{{samplePlaceholder}}">
+            <p class="error" *ngIf="originalURLField.error"> {{ originalURLField.error }} </p>
         </div>
 
         <div class="form-wrapper hidden-input"
             [ngClass]="{'fade-in': customURLField.show,'fade-out': !customURLField.show}">
             <label> Customize your URL:</label>
-            <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)">
+            <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)" 
+            [ngClass]="{'error': customURLField.error}" placeholder="{{samplePlaceholder}}">
+            <p class="error" *ngIf="customURLField.error"> {{ customURLField.error }} </p>
         </div>
 
         <div class="form-wrapper hidden-input"
