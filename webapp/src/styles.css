@@ -127,8 +127,8 @@ section {
 .buttons button {
     padding: 1em 2em;
     border-radius: 10px;
-    border: 2px solid #ddd;
-    background-color: #bbb;
+    border: 1px solid #ccc;
+    background-color: #ddd;
     cursor: pointer;
     font-weight: bold;
     min-width: 120px;
@@ -138,7 +138,7 @@ section {
 }
 
 .buttons button:hover {
-    background-color: #aaa;
+    background-color: #ccc;
 }
 
 .buttons button.accept:hover {
