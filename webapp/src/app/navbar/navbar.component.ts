@@ -9,7 +9,7 @@ import { faBolt } from '@fortawesome/free-solid-svg-icons';
   template: `
     <nav>
       <h1 class="main-title"> <fa-icon [icon]="fabolt"></fa-icon> Fast URL </h1>
-      <h6 class="subtitle"> Shorten your URLs for free, no ads included!</h6>
+      <h2 class="subtitle"> Shorten your URLs for free, no ads included!</h2>
     </nav>
   `
 })

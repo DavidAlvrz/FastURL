@@ -29,9 +29,10 @@ nav h1.main-title {
     margin: 1em 0 0 0;
 }
 
-nav h6.subtitle {
+nav h2 {
     color: #a1a1a1;
     font-weight: 700;
+    margin-top: 0;
     margin-bottom: 2em;
 
 }
@@ -157,7 +158,34 @@ article {
     margin: 1em auto;
     display: flex;
     flex-direction: column;
+    font-size: 1.2em;
 }
+
+article p {
+    margin: 0;
+    margin-bottom: 25px;
+}
+
+article h3{
+    font-size: 2em;
+    margin-bottom: .5em;
+}
+
+article h4{
+    font-size: 1.5em;
+    margin-bottom: .5em;
+    margin-top: 20px;
+}
+
+article hr{
+    display:block;
+    width: 100%;               
+    background-color:#aaa;
+    height: 1px;
+    margin: 0;
+}
+
+
 
 .hidden-input {
     display: none;
@@ -165,11 +193,11 @@ article {
 
 .hidden-input.fade-in {
     display: flex;
-    animation: fadeIn .6s ease-out;
+    animation: fadeIn .5s ease-out;
 }
 
 .hidden-input.fade-out {
-    animation: fadeOut .6s ease-out;
+    animation: fadeOut .5s ease-out;
 }
 
 @keyframes fadeIn {
@@ -203,9 +231,9 @@ article {
 
     100% {
         height: 0px;
-        opacity: 0;
-        display: none;
+        opacity: 0; 
     }
+
 }
 
 .spinner svg{
