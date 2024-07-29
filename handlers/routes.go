@@ -52,7 +52,7 @@ func addURL(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintln(w, "URL inserted successfully")
+	fmt.Fprintln(w, "{\"error\": false, \"msg\": \"URL inserted successfully\"}")
 }
 
 func getUrl(w http.ResponseWriter, r *http.Request) {

@@ -31,7 +31,7 @@ export class AppComponent {
   shortenedlURLField = {
     show: false,
     value: '',
-    error: ''
+    msg: ''
   }
 
   toggleCustomField() {
@@ -99,6 +99,7 @@ export class AppComponent {
   }
 
   validateForm() {
+
     if (this.originalURLField.value === '') {
       alert('Please enter a URL to shorten');
       return false;
@@ -112,8 +113,14 @@ export class AppComponent {
     return true;
   }
 
-  copyToClipboard() {
-    return;
+copyToClipboard() {
+    const inputElement = document.createElement('input');
+    inputElement.value = this.shortenedlURLField.value;
+    document.body.appendChild(inputElement);
+    inputElement.select();
+    document.execCommand('copy');
+    document.body.removeChild(inputElement);
+    this.shortenedlURLField.msg = 'Copied to clipboard';
   }
 
   resetUI() {
@@ -122,6 +129,7 @@ export class AppComponent {
     this.shortenedlURLField.value = '';
     this.customURLField.show = false;
     this.shortenedlURLField.show = false;
+    this.shortenedlURLField.msg = '';
   }
 
 }
