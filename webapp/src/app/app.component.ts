@@ -110,6 +110,13 @@ export class AppComponent {
       return false;
     }
 
+    const urlRegex = /^https:\/\/www\.[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[a-zA-Z0-9\-_\/]*)?$/;
+    if(!urlRegex.test(this.originalURLField.value)){
+      this.originalURLField.error = 'Enter a valid URL';
+      return false;
+    }
+
+
     if (this.customURLField.show && this.customURLField.value === this.baseUrl) {
       this.originalURLField.error = '';
       this.customURLField.error = 'Enter your custom URL';
