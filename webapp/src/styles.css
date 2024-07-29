@@ -32,7 +32,7 @@ nav h1.main-title {
 nav h6.subtitle {
     color: #a1a1a1;
     font-weight: 700;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 
 }
 
@@ -127,8 +127,8 @@ section {
 .buttons button {
     padding: 1em 2em;
     border-radius: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    border: 2px solid #ddd;
+    background-color: #bbb;
     cursor: pointer;
     font-weight: bold;
     min-width: 120px;
@@ -138,11 +138,11 @@ section {
 }
 
 .buttons button:hover {
-    background-color: #f7f7f7;
+    background-color: #aaa;
 }
 
 .buttons button.accept:hover {
-    background-color: rgb(4, 119, 196);
+    background-color: rgb(0, 0, 0);
     color: white;
 }
 
