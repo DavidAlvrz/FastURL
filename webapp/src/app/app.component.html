@@ -7,15 +7,18 @@
             <input type="text">
         </div>
 
-        @if(showResultField){
-        <div class="form-wrapper">
+        <div class="form-wrapper hidden-input" [ngClass]="{'fade-in': showCustomField,'fade-out': !showCustomField} ">
+            <label> Customize your URL:</label>
+            <input type="text" [value]="customUrl" (input)="handleCustomInputChange($event)">
+        </div>
+
+        <div class="form-wrapper hidden-input" [ngClass]="{'fade-in': showResultField}">
             <label> Shortened URL:</label>
             <input type="text">
         </div>
-        }
 
         <div class="buttons">
-            <button>Custom</button>
+            <button (click)="toggleCustomField()">Custom</button>
             <button class="accept" (click)="shortenURL()">Shorten</button>
         </div>
     </section>
