@@ -11,6 +11,10 @@ nav {
     background-color: var(--primary-color);
 }
 
+nav svg{
+    color: rgb(185, 185, 14);
+}
+
 nav img{
     width: 300px;
     height: 300px;
@@ -105,7 +109,7 @@ section {
     width: 95%;
     font-size: .8em;
     margin: 0;
-    color: var(--primary-color);
+    color: #17a704;
 }
 
 .form-wrapper p.error {
