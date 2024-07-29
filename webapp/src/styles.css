@@ -86,6 +86,10 @@ section {
     border: 1px solid red;
 }
 
+.form-wrapper input::placeholder {
+    color: #aaa;
+}
+
 .form-wrapper input.shortened-url{
     width: 90%;
     border: 2.5px solid var(--primary-color);
