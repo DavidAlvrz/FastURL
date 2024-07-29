@@ -8,22 +8,25 @@
         </div>
 
         <div class="form-wrapper hidden-input"
-            [ngClass]="{'fade-in': customURLField.show,'fade-out': !customURLField.show} ">
+            [ngClass]="{'fade-in': customURLField.show,'fade-out': !customURLField.show}">
             <label> Customize your URL:</label>
             <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)">
         </div>
 
-        <div class="form-wrapper hidden-input">
-            <label> Shortened URL:</label>
-            <input type="text">
+        <div class="form-wrapper hidden-input"
+            [ngClass]="{'fade-in': shortenedlURLField.show,'fade-out': !shortenedlURLField.show} ">
+            <label> Your URL is ready!</label>
+            <input disabled type="text" [(ngModel)]="shortenedlURLField.value" name="asd" (input)="handleCustomInputChange($event)">
         </div>
-
         <div class="buttons">
-            <button (click)="toggleCustomField()">Custom</button>
-            <button class="accept" (click)="shortenURL()">
+            <button *ngIf="!shortenedlURLField.show" (click)="toggleCustomField()">Custom</button>
+            <button class="accept" *ngIf="!shortenedlURLField.show" (click)="shortenURL()">
                 <span *ngIf="!loading">Shorten</span>
                 <fa-icon *ngIf="loading" [icon]="facog" class="spinner"></fa-icon>
             </button>
+
+            <button *ngIf="shortenedlURLField.show" (click)="copyToClipboard()">Copy to clipboard</button>
+            <button class="accept" *ngIf="shortenedlURLField.show" (click)="resetUI()">Shorten another URL</button>
         </div>
 
 

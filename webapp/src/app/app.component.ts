@@ -15,7 +15,6 @@ export class AppComponent {
   baseUrl = 'www.fasturl.com/go/';
 
   loading = false;
-  finished = false;
 
   originalURLField = {
     show: true,
@@ -29,14 +28,14 @@ export class AppComponent {
     error: ''
   }
 
-  shortenlURLField = {
+  shortenedlURLField = {
     show: false,
     value: '',
     error: ''
   }
 
   toggleCustomField() {
-    if(this.loading) return;
+    if(this.loading || this.shortenedlURLField.show) return;
     this.customURLField.show = !this.customURLField.show;
   }
 
@@ -55,15 +54,12 @@ export class AppComponent {
     // UI
     this.loading = true;
 
-    setTimeout(() => {
-      this.loading = false;
-    }, 2000);
-
-    return
-
     //Validate form
     const formOk = this.validateForm();
-    if (!formOk) return;
+    if (!formOk){
+      this.loading = false;
+      return;
+    }
 
     // Get ID
     let id = '';
@@ -91,8 +87,15 @@ export class AppComponent {
     }
 
     //Save URL
-    await this.urlsService.saveUrl(id, this.originalURLField.value);
+    const result = await this.urlsService.saveUrl(id, this.originalURLField.value);
+    console.log(result);
 
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    //UI
+    this.loading = false;
+    this.shortenedlURLField.show = true;
+    this.shortenedlURLField.value = this.baseUrl + id;
   }
 
   validateForm() {
@@ -107,6 +110,18 @@ export class AppComponent {
     }
 
     return true;
+  }
+
+  copyToClipboard() {
+    return;
+  }
+
+  resetUI() {
+    this.originalURLField.value = '';
+    this.customURLField.value = this.baseUrl;
+    this.shortenedlURLField.value = '';
+    this.customURLField.show = false;
+    this.shortenedlURLField.show = false;
   }
 
 }

@@ -18,12 +18,12 @@ export class UrlsService {
     }
   }
 
-  async saveUrl(id: string, url: string) {
+  async saveUrl(id: string, url: string) : Promise<any>{
     try {
       const body = { "id": id, "url": url };
       return await this.http.post(`${this.backendUrl}/url/add`, body).toPromise();
     } catch (e) {
-      return null;
+      return e;
     }
   }
 
