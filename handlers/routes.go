@@ -4,18 +4,17 @@ import (
 	"encoding/json"
 	"fastURL/model"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
-func RegisterHandlers() {
-	r := mux.NewRouter()
+func RegisterHandlers(r *mux.Router) {
 	r.HandleFunc("/", homeHandler)
 	r.HandleFunc("/url/get", getUrl).Methods("GET")
 	r.HandleFunc("/url/add", addURL).Methods("POST")
 	r.HandleFunc("/get/{id}", redirectURL).Methods("GET")
-	http.Handle("/", r)
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -55,6 +54,8 @@ func addURL(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUrl(w http.ResponseWriter, r *http.Request) {
+	log.Println("Call received to retrieve an URL")
+
 	// Check if the request method is GET
 	if r.Method != http.MethodGet {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
@@ -72,9 +73,15 @@ func getUrl(w http.ResponseWriter, r *http.Request) {
 	// Retrieve associated long URL
 	var url, err = model.GetURL(id)
 
-	// Check if the long URL has been found
+	// Check database error
 	if err != nil {
-		http.Error(w, "Error fetching url "+id, http.StatusNotFound)
+		http.Error(w, "Error fetching url "+id, http.StatusInternalServerError)
+		return
+	}
+
+	// Check if the URL has been found
+	if url == "" {
+		http.Error(w, "URL not found", http.StatusNotFound)
 		return
 	}
 

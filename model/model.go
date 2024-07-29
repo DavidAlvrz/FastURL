@@ -23,6 +23,7 @@ func GetURL(id string) (string, error) {
 	var url string
 	query := `SELECT url FROM urls WHERE id = ?`
 	err := DB.QueryRow(query, id).Scan(&url)
+
 	if err != nil {
 		if err == sql.ErrNoRows {
 			log.Printf("No URL found for id: %s\n", id)
