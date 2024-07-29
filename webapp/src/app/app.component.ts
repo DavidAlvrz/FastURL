@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UrlsService } from './urls.service';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +8,37 @@ import { UrlsService } from './urls.service';
 })
 export class AppComponent {
 
+  facog = faCog;
+
   constructor(private urlsService: UrlsService) { }
 
-  showResultField: boolean = false;
-  showCustomField: boolean = false;
+  baseUrl = 'www.fasturl.com/go/';
 
-  toggleCustomField() {
-    this.showCustomField = !this.showCustomField;
+  loading = false;
+  finished = false;
+
+  originalURLField = {
+    show: true,
+    value: '',
+    error: ''
   }
 
-  baseUrl = 'www.fasturl.com/';
+  customURLField = {
+    show: false,
+    value: this.baseUrl,
+    error: ''
+  }
 
-  originalURL = '';
-  customUrl = this.baseUrl;
+  shortenlURLField = {
+    show: false,
+    value: '',
+    error: ''
+  }
+
+  toggleCustomField() {
+    if(this.loading) return;
+    this.customURLField.show = !this.customURLField.show;
+  }
 
   handleCustomInputChange(event: any) {
     const text = event.target.value;
@@ -31,13 +50,26 @@ export class AppComponent {
   }
 
   async shortenURL() {
+    if(this.loading) return;
+
+    // UI
+    this.loading = true;
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 2000);
+
+    return
+
+    //Validate form
     const formOk = this.validateForm();
     if (!formOk) return;
 
+    // Get ID
     let id = '';
-    if (this.showCustomField) {
+    if (this.customURLField.show) {
       //Get custom ID
-      id = this.customUrl.replace(this.baseUrl, '');
+      id = this.customURLField.value.replace(this.baseUrl, '');
 
       //Check if custom URL is being used
       const response = await this.urlsService.getUrl(id);
@@ -59,17 +91,17 @@ export class AppComponent {
     }
 
     //Save URL
-    await this.urlsService.saveUrl(id, this.originalURL);
+    await this.urlsService.saveUrl(id, this.originalURLField.value);
 
   }
 
   validateForm() {
-    if (this.originalURL === '') {
+    if (this.originalURLField.value === '') {
       alert('Please enter a URL to shorten');
       return false;
     }
 
-    if (this.showCustomField && this.customUrl === this.baseUrl) {
+    if (this.customURLField.show && this.customURLField.value === this.baseUrl) {
       alert('Please enter a custom URL');
       return false;
     }

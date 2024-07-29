@@ -7,8 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BrowserModule } from '@angular/platform-browser';
-
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +16,8 @@ import { BrowserModule } from '@angular/platform-browser';
     FormsModule,
     NavbarComponent,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule    
     ],
   providers: [UrlsService, HttpClient],
   exports: [AppComponent, NavbarComponent],

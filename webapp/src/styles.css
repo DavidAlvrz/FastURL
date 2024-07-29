@@ -11,6 +11,12 @@ nav {
     background-color: var(--primary-color);
 }
 
+nav img{
+    width: 300px;
+    height: 300px;
+    margin: 1em 0;
+}
+
 h1 {
     color: white;
     font-size: 4em;
@@ -18,13 +24,13 @@ h1 {
     margin: .5em 0 0 0;
 }
 
-h4{
+h4 {
     color: #ebe70f;
     margin: 1em 0;
 }
 
 
-h1:hover{
+h1:hover {
     transform: scale(1.05);
 }
 
@@ -52,7 +58,7 @@ section {
     padding: 1em;
     border-radius: 10px;
     gap: .75em;
-    box-shadow:    0 0 10px 0 rgba(0,0,0,0.26), 0 0 15px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.26), 0 0 15px 0 rgba(0, 0, 0, 0.19);
 }
 
 .form-wrapper {
@@ -60,7 +66,7 @@ section {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap:.5em;
+    gap: .5em;
     height: 70px;
 }
 
@@ -77,37 +83,41 @@ section {
     background-color: #f9f9f9;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: flex-end;
-    width: 95%;
+    width: 100%;
     gap: 1em;
 }
 
-.buttons button{
+.buttons button {
     padding: 1em 2em;
     border-radius: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
     cursor: pointer;
     font-weight: bold;
+    width: 120px;
+    min-width: 120px;
+    height: 50px;
+    max-height: 50px;
 }
 
-.buttons button:hover{
+.buttons button:hover {
     background-color: #f7f7f7;
 }
 
-.buttons button.accept:hover{
+.buttons button.accept:hover {
     background-color: rgb(4, 119, 196);
     color: white;
 }
 
-button.accept{
+button.accept {
     background-color: var(--primary-color);
     color: white;
 }
 
-article{
+article {
     width: 50%;
     max-width: 700px;
     margin: 1em auto;
@@ -117,7 +127,7 @@ article h3 {
     text-align: center;
 }
 
-.hidden-input{
+.hidden-input {
     display: none;
 }
 
@@ -135,10 +145,12 @@ article h3 {
         height: 0px;
         opacity: 0;
     }
-    75% {
-        height:100px;
+
+    60% {
+        height: 90px;
         opacity: 1;
     }
+
     100% {
         height: 70px;
         opacity: 1;
@@ -151,14 +163,25 @@ article h3 {
         height: 70px;
         opacity: 1;
     }
+
     50% {
-        height: 100px;
+        height: 90px;
         opacity: .25;
     }
+
     100% {
         height: 0px;
         opacity: 0;
-        display: none;        
+        display: none;
     }
 }
 
+.spinner svg{
+    animation: spin 1.5s infinite linear;
+    font-size: 1.25em;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

@@ -4,23 +4,29 @@
     <section>
         <div class="form-wrapper">
             <label> URL to shorten:</label>
-            <input type="text" [(ngModel)]="originalURL" name="asd">
+            <input type="text" [(ngModel)]="originalURLField.value" name="asd">
         </div>
 
-        <div class="form-wrapper hidden-input" [ngClass]="{'fade-in': showCustomField,'fade-out': !showCustomField} ">
+        <div class="form-wrapper hidden-input"
+            [ngClass]="{'fade-in': customURLField.show,'fade-out': !customURLField.show} ">
             <label> Customize your URL:</label>
-            <input type="text" [(ngModel)]="customUrl" name="asd" (input)="handleCustomInputChange($event)">
+            <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)">
         </div>
 
-        <div class="form-wrapper hidden-input" [ngClass]="{'fade-in': showResultField}">
+        <div class="form-wrapper hidden-input">
             <label> Shortened URL:</label>
             <input type="text">
         </div>
 
         <div class="buttons">
             <button (click)="toggleCustomField()">Custom</button>
-            <button class="accept" (click)="shortenURL()">Shorten</button>
+            <button class="accept" (click)="shortenURL()">
+                <span *ngIf="!loading">Shorten</span>
+                <fa-icon *ngIf="loading" [icon]="facog" class="spinner"></fa-icon>
+            </button>
         </div>
+
+
     </section>
 </div>
 
