@@ -164,6 +164,8 @@ article {
 article p {
     margin: 0;
     margin-bottom: 25px;
+    color: #666;
+    font-weight: 600;
 }
 
 article h3{
