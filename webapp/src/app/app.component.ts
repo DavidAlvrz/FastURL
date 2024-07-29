@@ -38,6 +38,7 @@ export class AppComponent {
 
       //Check if custom URL is being used
       const  associatedURL = await this.urlsService.getUrl(id)
+      console.log(associatedURL);
     }
     else {
       //Generate random ID

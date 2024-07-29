@@ -85,7 +85,9 @@ func getUrl(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintln(w, url)
+	// Return the URL
+	w.Write([]byte(fmt.Sprintf("{\"url\": \"%s\"}", url)))
+
 }
 
 func redirectURL(w http.ResponseWriter, r *http.Request) {
