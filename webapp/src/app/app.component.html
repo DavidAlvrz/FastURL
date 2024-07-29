@@ -19,7 +19,7 @@
         <div class="form-wrapper hidden-input"
             [ngClass]="{'fade-in': shortenedlURLField.show,'fade-out': !shortenedlURLField.show} ">
             <label> Your URL is ready!</label>
-            <input disabled type="text" [(ngModel)]="shortenedlURLField.value" name="asd" (input)="handleCustomInputChange($event)">
+            <input disabled class="shortened-url" type="text" [(ngModel)]="shortenedlURLField.value" (input)="handleCustomInputChange($event)">
             <p *ngIf="shortenedlURLField.msg"> {{ shortenedlURLField.msg }} </p>
         </div>
 

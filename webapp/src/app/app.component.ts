@@ -74,7 +74,8 @@ export class AppComponent {
       //Check if custom URL is being used
       const response = await this.urlsService.getUrl(id);
       if (response) {
-        alert('Custom URL already in use');
+        this.customURLField.error = 'URL already in use';
+        this.loading = false;
         return;
       }
     }

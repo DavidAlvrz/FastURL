@@ -67,7 +67,6 @@ section {
     align-items: center;
     width: 100%;
     height: 70px;
-    max-height: 90px;
 }
 
 .form-wrapper label {
@@ -85,6 +84,12 @@ section {
 
 .form-wrapper input.error{
     border: 1px solid red;
+}
+
+.form-wrapper input.shortened-url{
+    width: 90%;
+    border: 2.5px solid var(--primary-color);
+    text-align: center;
 }
 
 .form-wrapper p {
