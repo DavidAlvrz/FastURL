@@ -168,15 +168,19 @@ article p {
     font-weight: 600;
 }
 
+article h3,
+article h4{
+    color: var(--primary-color);
+    margin-bottom: .5em;
+}
+
 article h3{
     font-size: 2em;
-    margin-bottom: .5em;
 }
 
 article h4{
     font-size: 1.5em;
-    margin-bottom: .5em;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 article hr{
