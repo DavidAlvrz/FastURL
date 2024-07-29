@@ -288,3 +288,17 @@ article hr{
 .link img:hover{
     transform: scale(1.05);
 }
+
+@media (max-width: 700px) {
+    :root{
+        font-size: .8em;
+    }
+
+    h2{
+        font-size: 1.2em;
+    }
+
+    section{
+        width: 70%;
+    }
+}
