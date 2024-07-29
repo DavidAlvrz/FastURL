@@ -1,0 +1,103 @@
+:root {
+    font-family: system-ui;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: black;
+}
+
+h1 {
+    color: white;
+    font-size: 3em;
+    transition: transform 0.5s;
+    margin: .5em 0 0 0;
+}
+
+h4{
+    color: #ccc;
+}
+
+
+h1:hover {
+    transform: scale(1.05);
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #ddd
+}
+
+.gradient {
+    background: linear-gradient(to bottom, black 50%, #ddd 0%);
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 600px;
+    margin: 0 auto;
+    padding: 1em;
+    border-radius: 10px;
+    gap: .75em;
+    box-shadow:    0 0 10px 0 rgba(0,0,0,0.26), 0 0 15px 0 rgba(0,0,0,0.19);
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap:.5em;
+}
+
+.form-wrapper label {
+    width: 95%;
+    text-align: left;
+}
+
+.form-wrapper input {
+    width: 90%;
+    padding: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+    gap: 1em;
+}
+
+.buttons button{
+    padding: 1em 2em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+button.accept{
+    background-color: black;
+    color: white;
+}
+
+article{
+    width: 600px;
+    margin: 1em auto;
+}
+
+article h3 {
+    text-align: center;
+}

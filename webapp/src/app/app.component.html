@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<div class="gradient">
+    <section>
+        <div class="form-wrapper">
+            <label> URL to shorten:</label>
+            <input type="text">
+        </div>
+
+        @if(showCustomField){
+        <div class="form-wrapper">
+            <label> URL to shorten:</label>
+            <input type="text">
+        </div>
+        }
+
+        <div class="buttons">
+            <button (click)="toggleURL()">Custom</button>
+            <button class="accept">Shorten</button>
+        </div>
+    </section>
+</div>
+
+<article>
+    <h3> How to shorten your links? </h3>
+
+    <p>
+        Just paste your link in the input field and click on the "Shorten" button.
+        You can also customize your shortened link by clicking on the "Custom" button.
+        You can also view your shortened links by clicking on the "My Links" button in the navigation bar.
+    </p>
+
+    <p>
+        Just paste your link in the input field and click on the "Shorten" button.
+        You can also customize your shortened link by clicking on the "Custom" button.
+        You can also view your shortened links by clicking on the "My Links" button in the navigation bar.
+    </p>
+
+</article>
