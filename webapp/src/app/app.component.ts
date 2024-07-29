@@ -25,6 +25,9 @@ export class AppComponent {
     const text = event.target.value;
     if (text.length < this.baseUrl.length)
       event.target.value = this.baseUrl;
+    else {
+      event.target.value = event.target.value.trim();
+    }
   }
 
   async shortenURL() {
@@ -54,7 +57,7 @@ export class AppComponent {
         }
       }
     }
-    
+
     //Save URL
     await this.urlsService.saveUrl(id, this.originalURL);
 
