@@ -1,10 +1,9 @@
 :root {
     font-family: system-ui;
-    --primary-color: rgb(20, 135, 212);
+    --primary-color: #17181C;
 }
 
 nav {
-    padding: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,16 +17,19 @@ nav img{
     margin: 1em 0;
 }
 
-h1 {
+nav h1.main-title {
+    font-weight: 700;
     color: white;
     font-size: 4em;
     transition: transform 0.5s;
-    margin: .5em 0 0 0;
+    margin: 1em 0 0 0;
 }
 
-h4 {
-    color: #ebe70f;
-    margin: 0 0;
+nav h6.subtitle {
+    color: #a1a1a1;
+    font-weight: 700;
+    margin-bottom: 1em;
+
 }
 
 h1:hover {
@@ -54,7 +56,7 @@ section {
     color: black;
     width: 50%;
     max-width: 700px;
-    margin: 0 auto;
+    margin: 0 auto 2em;
     padding: 1em;
     border-radius: 10px;
     gap: 1.5em;
@@ -147,10 +149,8 @@ article {
     width: 50%;
     max-width: 700px;
     margin: 1em auto;
-}
-
-article h3 {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .hidden-input {
@@ -210,4 +210,27 @@ article h3 {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.link{
+    margin-top:2em;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+}
+
+.link img{
+    width: 100%;
+    border-radius: 20px;
+    transition: .5s;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5), 0 0 15px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+.link img:hover{
+    transform: scale(1.05);
 }

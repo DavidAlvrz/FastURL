@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   imports: [],
   template: `
     <nav>
-      <h1> Fast URL </h1>
-      <h4> Shorten your URLs for free, no ads included!</h4>
+      <h1 class="main-title"> Fast URL </h1>
+      <h6 class="subtitle"> Shorten your URLs for free, no ads included!</h6>
     </nav>
   `
 })

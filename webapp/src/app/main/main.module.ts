@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FooterComponent } from '../footer/footer.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     BrowserModule,
     HttpClientModule,
-    FontAwesomeModule    
+    FontAwesomeModule,
+    FooterComponent  
     ],
   providers: [UrlsService, HttpClient],
   exports: [AppComponent, NavbarComponent],
