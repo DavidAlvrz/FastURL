@@ -123,11 +123,11 @@ article h3 {
 
 .hidden-input.fade-in {
     display: flex;
-    animation: fadeIn .5s ease-out;
+    animation: fadeIn .6s ease-out;
 }
 
 .hidden-input.fade-out {
-    animation: fadeOut .5s ease-out;
+    animation: fadeOut .6s ease-out;
 }
 
 @keyframes fadeIn {
@@ -151,10 +151,14 @@ article h3 {
         height: 70px;
         opacity: 1;
     }
+    50% {
+        height: 100px;
+        opacity: .25;
+    }
     100% {
         height: 0px;
         opacity: 0;
-        display: none;
+        display: none;        
     }
 }
 

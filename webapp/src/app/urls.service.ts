@@ -11,7 +11,20 @@ export class UrlsService {
   backendUrl = 'http://localhost:8088';
 
   async getUrl(id: string) {
-    return await this.http.get(`${this.backendUrl}/url/get?id=${id}`).toPromise();
+    try {
+      return await this.http.get(`${this.backendUrl}/url/get?id=${id}`).toPromise();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async saveUrl(id: string, url: string) {
+    try {
+      const body = { "id": id, "url": url };
+      return await this.http.post(`${this.backendUrl}/url/add`, body).toPromise();
+    } catch (e) {
+      return null;
+    }
   }
 
 }

@@ -14,7 +14,7 @@ func RegisterHandlers(r *mux.Router) {
 	r.HandleFunc("/", homeHandler)
 	r.HandleFunc("/url/get", getUrl).Methods("GET")
 	r.HandleFunc("/url/add", addURL).Methods("POST")
-	r.HandleFunc("/get/{id}", redirectURL).Methods("GET")
+	r.HandleFunc("/go/{id}", redirectURL).Methods("GET")
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -22,6 +22,8 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func addURL(w http.ResponseWriter, r *http.Request) {
+	log.Println("Call received to insert an URL")
+
 	// Check if the request method is POST
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
@@ -81,7 +83,7 @@ func getUrl(w http.ResponseWriter, r *http.Request) {
 
 	// Check if the URL has been found
 	if url == "" {
-		http.Error(w, "URL not found", http.StatusNotFound)
+		http.Error(w, "URL not found", http.StatusNoContent)
 		return
 	}
 
@@ -91,6 +93,8 @@ func getUrl(w http.ResponseWriter, r *http.Request) {
 }
 
 func redirectURL(w http.ResponseWriter, r *http.Request) {
+	log.Println("Call received to reditect an URL")
+
 	vars := mux.Vars(r)
 	id := vars["id"]
 

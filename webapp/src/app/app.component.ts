@@ -31,20 +31,33 @@ export class AppComponent {
     const formOk = this.validateForm();
     if (!formOk) return;
 
-    let id;
+    let id = '';
     if (this.showCustomField) {
       //Get custom ID
       id = this.customUrl.replace(this.baseUrl, '');
 
       //Check if custom URL is being used
-      const  associatedURL = await this.urlsService.getUrl(id)
-      console.log(associatedURL);
+      const response = await this.urlsService.getUrl(id);
+      if (response) {
+        alert('Custom URL already in use');
+        return;
+      }
     }
     else {
       //Generate random ID
-      id = Math.random().toString(36).substring(2, 8);
-      alert('Your shortened URL is: ' + this.baseUrl + id);
+      let freeIdFound = false;
+      while (!freeIdFound) {
+        id = Math.random().toString(36).substring(2, 8);
+        const response = await this.urlsService.getUrl(id);
+        if (!response) {
+          freeIdFound = true;
+        }
+      }
     }
+    
+    //Save URL
+    await this.urlsService.saveUrl(id, this.originalURL);
+
   }
 
   validateForm() {
