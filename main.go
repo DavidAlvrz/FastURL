@@ -52,7 +52,7 @@ func main() {
 	// Start on HTTPS if certfile and keyfile are provided
 	if certfile != "" && keyfile != "" {
 		log.Println("Starting https server on :8088")
-		err := http.ListenAndServeTLS(":443", certfile, keyfile, nil)
+		err := http.ListenAndServeTLS(":8088", certfile, keyfile, nil)
 		if err != nil {
 			log.Fatalf("Error starting https server:", err)
 		}
