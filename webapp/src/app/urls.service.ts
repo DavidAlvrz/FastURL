@@ -13,17 +13,17 @@ export class UrlsService {
   async getUrl(id: string) {
     try {
       return await this.http.get(`${this.backendUrl}/url/get?id=${id}`).toPromise();
-    } catch (e) {
-      return null;
+    } catch (error) {
+      throw error;
     }
   }
 
-  async saveUrl(id: string, url: string) : Promise<any>{
+  async saveUrl(id: string, url: string): Promise<any> {
     try {
       const body = { "id": id, "url": url };
       return await this.http.post(`${this.backendUrl}/url/add`, body).toPromise();
-    } catch (e) {
-      return e;
+    } catch (error) {
+      throw error;
     }
   }
 

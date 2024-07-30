@@ -1,53 +1,66 @@
 <app-navbar></app-navbar>
 
 <div class="gradient">
-    <section>
-        <div class="form-wrapper">
-            <div>
-                <label> URL to shorten:</label>
-                <p class="error" *ngIf="originalURLField.error"> {{ originalURLField.error }} </p>
+
+    @if(!serviceDown){
+        <section>
+            <div class="form-wrapper">
+                <div>
+                    <label> URL to shorten:</label>
+                    <p class="error" *ngIf="originalURLField.error"> {{ originalURLField.error }} </p>
+                </div>
+
+                <input type="text" [(ngModel)]="originalURLField.value" [ngClass]="{'error': originalURLField.error}"
+                    placeholder="{{samplePlaceholder}}"  (keyup.enter)="shortenURL()">
             </div>
 
-            <input type="text" [(ngModel)]="originalURLField.value" [ngClass]="{'error': originalURLField.error}"
-                placeholder="{{samplePlaceholder}}">
-        </div>
+            <div class="form-wrapper hidden-input"
+                [ngClass]="{'fade-in': customURLField.show,'fade-out': !customURLField.show}">
 
-        <div class="form-wrapper hidden-input"
-            [ngClass]="{'fade-in': customURLField.show,'fade-out': !customURLField.show}">
+                <div>
+                    <label> Customize your URL:</label>
+                    <p class="error" *ngIf="customURLField.error"> {{ customURLField.error }} </p>
+                </div>
 
-            <div>
-                <label> Customize your URL:</label>
-                <p class="error" *ngIf="customURLField.error"> {{ customURLField.error }} </p>
+                <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)"
+                    [ngClass]="{'error': customURLField.error}" placeholder="{{samplePlaceholder}}" (keyup.enter)="shortenURL()">
             </div>
 
-            <input type="text" [(ngModel)]="customURLField.value" name="asd" (input)="handleCustomInputChange($event)"
-                [ngClass]="{'error': customURLField.error}" placeholder="{{samplePlaceholder}}">
-        </div>
+            <div class="form-wrapper hidden-input"
+                [ngClass]="{'fade-in': shortenedlURLField.show,'fade-out': !shortenedlURLField.show} ">
 
-        <div class="form-wrapper hidden-input"
-            [ngClass]="{'fade-in': shortenedlURLField.show,'fade-out': !shortenedlURLField.show} ">
-
-            <div>
-                <label> Your URL is ready!</label>
-                <p *ngIf="shortenedlURLField.msg"> {{ shortenedlURLField.msg }} </p>
+                <div>
+                    <label> Your URL is ready!</label>
+                    <p *ngIf="shortenedlURLField.msg"> {{ shortenedlURLField.msg }} </p>
+                </div>
+                <input disabled class="shortened-url" type="text" [(ngModel)]="shortenedlURLField.value"
+                    [ngClass]="{'success': shortenedlURLField.msg}">
             </div>
-            <input disabled class="shortened-url" type="text" [(ngModel)]="shortenedlURLField.value"
-                [ngClass]="{'success': shortenedlURLField.msg}">
-        </div>
 
-        <div class="buttons">
-            <button *ngIf="!shortenedlURLField.show" (click)="toggleCustomField()">Custom</button>
-            <button class="accept" *ngIf="!shortenedlURLField.show" (click)="shortenURL()">
-                <span *ngIf="!loading">Shorten</span>
-                <fa-icon *ngIf="loading" [icon]="facog" class="spinner"></fa-icon>
-            </button>
+            <div class="buttons">
+                <button *ngIf="!shortenedlURLField.show" (click)="toggleCustomField()">Custom</button>
+                <button class="accept" *ngIf="!shortenedlURLField.show" (click)="shortenURL()">
+                    <span *ngIf="!loading">Shorten</span>
+                    <fa-icon *ngIf="loading" [icon]="facog" class="spinner"></fa-icon>
+                </button>
 
-            <button *ngIf="shortenedlURLField.show" (click)="copyToClipboard()">Copy to clipboard</button>
-            <button class="accept" *ngIf="shortenedlURLField.show" (click)="resetUI()">Next URL</button>
-        </div>
+                <button *ngIf="shortenedlURLField.show" (click)="copyToClipboard()">Copy to clipboard</button>
+                <button class="accept" *ngIf="shortenedlURLField.show" (click)="resetUI()">Next URL</button>
+            </div>
 
 
-    </section>
+        </section>
+    }@else{
+        <section>
+            <div class="form-wrapper">
+                <h2>Server down <fa-icon [icon]="faskull"></fa-icon></h2>
+            </div>
+            <div class="buttons">
+                <button class="" (click)="resetUI()">Retry</button>
+            </div>
+        </section>
+    }
+
 </div>
 
 <article>
@@ -92,7 +105,5 @@
             <img src="images/git.png" alt="Github logo">
         </a>
     </div>
-
-
 
 </article>

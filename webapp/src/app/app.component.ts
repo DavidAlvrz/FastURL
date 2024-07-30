@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UrlsService } from './urls.service';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faSkull } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,13 @@ export class AppComponent {
   constructor(private urlsService: UrlsService) { }
 
   facog = faCog;
-  samplePlaceholder = 'https://www.fasturl.com/dontVisitMe';
+  faskull = faSkull;
+  samplePlaceholder = 'https://www.fasterurl.com/dontVisitMe';
 
-  baseUrl = 'www.fasturl.com/go/';
+  baseUrl = 'www.fasterurl.com/go/';
 
   loading = false;
+  serviceDown = false;
 
   originalURLField = {
     show: true,
@@ -34,8 +37,29 @@ export class AppComponent {
     msg: ''
   }
 
+  requests = {
+
+    getUrl: async (id: string) => {
+      try {
+        return await this.urlsService.getUrl(id);
+      } catch (e) {
+        this.serviceDown = true;
+        return null;
+      }
+    },
+    saveUrl: async (id: string, url: string) => {
+      try {
+        return await this.urlsService.saveUrl(id, url);
+      } catch (e) {
+        this.serviceDown = true;
+        return null;
+      }
+    }
+
+  }
+
   toggleCustomField() {
-    if(this.loading || this.shortenedlURLField.show) return;
+    if (this.loading || this.shortenedlURLField.show) return;
     this.customURLField.show = !this.customURLField.show;
     this.customURLField.error = '';
   }
@@ -50,17 +74,17 @@ export class AppComponent {
   }
 
   async shortenURL() {
-    if(this.loading) return;
+    if (this.loading) return;
 
     // UI
     this.loading = true;
 
     //Validate form
     const formOk = await this.validateForm();
-    if (!formOk){
+    if (!formOk) {
       this.loading = false;
       return;
-    }else{
+    } else {
       this.originalURLField.error = '';
       this.customURLField.error = '';
     }
@@ -76,16 +100,22 @@ export class AppComponent {
       let freeIdFound = false;
       while (!freeIdFound) {
         id = Math.random().toString(36).substring(2, 8);
-        const response = await this.urlsService.getUrl(id);
+        const response = await this.requests.getUrl(id);
         if (!response) {
           freeIdFound = true;
         }
+        
       }
     }
 
+    if (this.serviceDown) 
+      return;
+    
     //Save URL
-    const result = await this.urlsService.saveUrl(id, this.originalURLField.value);
-    console.log(result);
+    const result = await this.requests.saveUrl(id, this.originalURLField.value);
+
+    if (this.serviceDown)
+      return;
 
     await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -104,8 +134,8 @@ export class AppComponent {
     }
 
     //Check if URL is valid
-    const urlRegex = /^https:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[a-zA-Z0-9\-_\/]*)?(\?[a-zA-Z0-9\-_.=&]*)?$/;
-    if(!urlRegex.test(this.originalURLField.value)){
+    const urlRegex = /^(https?:\/\/)(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[a-zA-Z0-9\-_\/]*)?(\?[a-zA-Z0-9\-_.=&]*)?(#.*)?$/;
+    if (!urlRegex.test(this.originalURLField.value)) {
       this.originalURLField.error = 'Enter a valid URL';
       return false;
     }
@@ -126,13 +156,15 @@ export class AppComponent {
       //Check if custom URL is valid
       const idRegex = /^[a-zA-Z0-9_-]{2,}$/;
       if (!idRegex.test(id)) {
+        this.originalURLField.error = '';
         this.customURLField.error = 'Enter a valid custom URL';
         return false;
       }
 
       //Check if custom URL is already in use 
-      const response = await this.urlsService.getUrl(id);
+      const response = await this.requests.getUrl(id);
       if (response) {
+        this.originalURLField.error = '';
         this.customURLField.error = 'URL already in use';
         this.loading = false;
         return false;
@@ -141,8 +173,7 @@ export class AppComponent {
 
     return true;
   }
-
-copyToClipboard() {
+  copyToClipboard() {
     const inputElement = document.createElement('input');
     inputElement.value = this.shortenedlURLField.value;
     document.body.appendChild(inputElement);
@@ -159,6 +190,8 @@ copyToClipboard() {
     this.customURLField.show = false;
     this.shortenedlURLField.show = false;
     this.shortenedlURLField.msg = '';
+    this.serviceDown = false;
+    this.loading = false;
   }
 
 }
