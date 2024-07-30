@@ -12,7 +12,7 @@ export class AppComponent {
 
   facog = faCog;
   faskull = faSkull;
-  samplePlaceholder = 'https://www.fasterurl.com/dontVisitMe';
+  samplePlaceholder = 'https://www.fasterurl.com/go/dontVisitMe';
 
   baseUrl = 'www.fasterurl.com/go/';
 
