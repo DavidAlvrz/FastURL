@@ -134,7 +134,7 @@ export class AppComponent {
     }
 
     //Check if URL is valid
-    const urlRegex = /^(https?:\/\/)([a-zA-Z]{2,}\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\/[a-zA-Z0-9\-_\/]*)?(\?[a-zA-Z0-9\-_.=&]*)?([#:].*)?$/;
+    const urlRegex = /^(https?:\/\/)[^\s\/$.?#].[^\s]*$/
     if (!urlRegex.test(this.originalURLField.value)) {
       this.originalURLField.error = 'Enter a valid URL';
       return false;
