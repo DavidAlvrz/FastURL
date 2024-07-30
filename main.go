@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	"fastURL/handlers"
 	"fastURL/model"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 )
 
 func withCORS(next http.Handler) http.Handler {
@@ -27,6 +30,13 @@ func withCORS(next http.Handler) http.Handler {
 }
 
 func main() {
+
+	// Load environment variables
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v\n", err)
+	}
+
 	// DB setup
 	model.InitDB()
 	defer model.CloseDB()
@@ -36,8 +46,23 @@ func main() {
 	handlers.RegisterHandlers(r)
 
 	// Server setup
-	fmt.Println("Starting server on :8088")
-	if err := http.ListenAndServe(":8088", withCORS(r)); err != nil {
-		fmt.Println("Error starting server:", err)
+	certfile := os.Getenv("CERTFILE")
+	keyfile := os.Getenv("KEYFILE")
+
+	// Start on HTTPS if certfile and keyfile are provided
+	if certfile != "" && keyfile != "" {
+		log.Println("Starting https server on :8088")
+		err := http.ListenAndServeTLS(":443", certfile, keyfile, nil)
+		if err != nil {
+			log.Fatalf("Error starting https server:", err)
+		}
+
+	} else {
+
+		fmt.Println("Starting http server on :8088")
+		if err := http.ListenAndServe(":8088", withCORS(r)); err != nil {
+			log.Fatalf("Error starting http server:", err)
+		}
 	}
+
 }
