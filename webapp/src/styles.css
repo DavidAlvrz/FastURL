@@ -270,6 +270,7 @@ article hr{
     margin-top:2em;
     margin-bottom: 3em;
     width: 50%;
+    max-width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
